@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("img/bridge.jpg");
+}
+
+#wrapper {
+  border: 1px dotted black;
+  border-top: none;
+  border-bottom: none;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+#end {
+  /* border: 2px solid red; */
+  background: white;
+  width: 50vw;
+  height: 100px;
+  margin-bottom: 1rem;
+  background: white;
+  opacity: 0.7;
+}
+
+#bridge {
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 2px solid yellow; */
+  width: 50vw;
+}
+
+.grid {
+  border: 2px solid red;
+  height: 100px;
+  width: 50%;
+  background: linear-gradient(#2396bf, #0d5b77 40%, #004961 3%, #004961);
+  opacity: 0.7;
+}
+
+#start {
+  /* border: 2px solid red; */
+  background: white;
+  width: 50vw;
+  height: 100px;
+  margin-top: 1rem;
+  background: white;
+  opacity: 0.7;
+}
+
+.character {
+  width: 100px;
+  height: 100px;
+  margin-left: 43%;
+}
+
+#deadModal {
+  /* display: none; */
+  display:flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  background: black;
+  color: red;
+}
+
+#icon img{ 
+  width: 150px;
+  height: 200px;
+}
+
+#deadWords { 
+  margin-top: 1rem;
+  font-size: 3rem;
+}
