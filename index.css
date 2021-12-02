@@ -40,6 +40,7 @@ body {
   width: 50%;
   background: linear-gradient(#2396bf, #0d5b77 40%, #004961 3%, #004961);
   opacity: 0.7;
+  /* pointer-events:none; */
 }
 
 .character {
