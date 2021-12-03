@@ -4,8 +4,9 @@ const bridge = document.querySelector("#bridge");
 
 //Create-Bridge
 const createBridge = (gridsNum) => {
+  let gridDiv;
   for (i = 1; i < gridsNum; i++) {
-    let gridDiv = document.createElement("div");
+    gridDiv = document.createElement("div");
     gridDiv.id = i;
     gridDiv.classList.add("grid");
     bridge.append(gridDiv);
@@ -24,22 +25,51 @@ start.appendChild(character);
 //play again btn click
 const goAgain = () => {
   document.getElementById("deadModal").style.display = "none";
-}
+};
 
 //Array of "glass" squares
 let tilesArr = [...bridge.childNodes];
 
-// console.log(tilesArr[11].value = Math.floor(Math.random() * 2));
+//Chunk array into groups of 2
+const sliceIntoChunks = (arr, chunkSize) => {
+  const res = [];
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    res.push(chunk);
+  }
+  return res;
+};
+
+const groupedArr = sliceIntoChunks(tilesArr, 2);
+
+//set random value for odd indexed tiles
+//set opposite value for even indexed tiles
+  groupedArr.forEach((arr) => { 
+    arr[1].innerText = Math.floor(Math.random() * 2)
+    arr[1].innerText == 0 ? arr[0].innerText = 1 : arr[0].innerText = 0
+  })
+
+console.log(groupedArr)
+
 
 //Move character img to index of clicked tile
 const moveCharacter = (e) => {
   console.log(Array.from(tilesArr).indexOf(e.target));
   const tileIndex = Array.from(tilesArr).indexOf(e.target);
   tilesArr[tileIndex].appendChild(character);
-  // if(tileIndex % 2) { 
-  //   tilesArr[tileIndex - 1] DISABLE
-  // }
- 
+
+  //if odd index tile (on right side of bridge)
+  if (tileIndex % 2) {
+    tilesArr[tileIndex - 1].style.pointerEvents = "none";
+    tilesArr[tileIndex + 1].style.pointerEvents = "none";
+    tilesArr[tileIndex + 2].style.pointerEvents = "none";
+  }
+  //if even index tile (on left side of bridge)
+  if (tileIndex % 2 == 0) {
+    tilesArr[tileIndex + 1].style.pointerEvents = "none";
+    tilesArr[tileIndex + 2].style.pointerEvents = "none";
+    tilesArr[tileIndex + 3].style.pointerEvents = "none";
+  }
 };
 
 //move character
@@ -49,7 +79,5 @@ tilesArr.forEach((tile) => {
 
 //allow character to get to finish line
 end.addEventListener("click", () => end.appendChild(character));
-
-//run Math.random on even or odd indexes in array
 
 
