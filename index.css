@@ -40,7 +40,8 @@ body {
   width: 50%;
   background: linear-gradient(#2396bf, #0d5b77 40%, #004961 3%, #004961);
   opacity: 0.7;
-  font-size: 2rem;
+  cursor: pointer;
+  font-size: 0;
   /* pointer-events:none; */
 }
 
@@ -51,7 +52,7 @@ body {
 }
 
 #deadWrapper { 
-  display: none;
+  visibility: hidden;
 }
 
 #deadModal {
@@ -74,21 +75,26 @@ body {
   height: 200px;
 }
 
-#deadWords { 
+#words { 
   margin-top: 1rem;
   font-size: 3rem;
 }
 
 #deadModal button {
   background: rgb(212, 2, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   border: none;
-  width: 7rem;
+  width: 8rem;
   height: 2rem;
   border-radius: .5rem;
   margin:1rem;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1.2rem;
 }
 
 .testing { 

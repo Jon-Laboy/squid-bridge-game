@@ -1,6 +1,8 @@
 const start = document.querySelector("#start");
 const end = document.querySelector("#end");
+const deadModal = document.querySelector("#deadWrapper")
 const bridge = document.querySelector("#bridge");
+
 
 //Create-Bridge
 const createBridge = (gridsNum) => {
@@ -24,7 +26,8 @@ start.appendChild(character);
 
 //play again btn click
 const goAgain = () => {
-  document.getElementById("deadModal").style.display = "none";
+  deadModal.style.display = "none";
+  window.location.reload()
 };
 
 //Array of "glass" squares
@@ -49,13 +52,18 @@ const groupedArr = sliceIntoChunks(tilesArr, 2);
     arr[1].innerText == 0 ? arr[0].innerText = 1 : arr[0].innerText = 0
   })
 
-console.log(groupedArr)
+// console.log(groupedArr)
 
 
 //Move character img to index of clicked tile
 const moveCharacter = (e) => {
   console.log(Array.from(tilesArr).indexOf(e.target));
   const tileIndex = Array.from(tilesArr).indexOf(e.target);
+  //if on zero value tile player loses 
+  if(tilesArr[tileIndex].innerText == 0) {
+    deadModal.style.visibility = 'visible' 
+    console.log('lose')
+  }
   tilesArr[tileIndex].appendChild(character);
 
   //if odd index tile (on right side of bridge)
@@ -78,6 +86,9 @@ tilesArr.forEach((tile) => {
 });
 
 //allow character to get to finish line
-end.addEventListener("click", () => end.appendChild(character));
+end.addEventListener("click", () => { 
+  end.appendChild(character)
+  console.log('you won!') 
+});
 
 
