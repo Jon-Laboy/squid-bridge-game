@@ -51,7 +51,7 @@ body {
   margin-left: 43%;
 }
 
-#deadWrapper { 
+#winWrapper, #deadWrapper { 
   visibility: hidden;
 }
 
@@ -97,6 +97,34 @@ body {
   padding: 1.2rem;
 }
 
-.testing { 
-  background-color: red;
+#winModal {
+  display:flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  background: rgb(3, 129, 56);
+  color: white;
+}
+
+#winModal button {
+  background: rgb(2, 212, 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: none;
+  width: 8rem;
+  height: 2rem;
+  border-radius: .5rem;
+  margin:1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1.2rem;
 }

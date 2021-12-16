@@ -1,6 +1,7 @@
 const start = document.querySelector("#start");
 const end = document.querySelector("#end");
 const deadModal = document.querySelector("#deadWrapper")
+const winModal = document.querySelector("#winWrapper")
 const bridge = document.querySelector("#bridge");
 
 
@@ -45,6 +46,8 @@ const sliceIntoChunks = (arr, chunkSize) => {
 
 const groupedArr = sliceIntoChunks(tilesArr, 2);
 
+//gonna need grouped arr for move blocking i think 
+console.log(groupedArr)
 //set random value for odd indexed tiles
 //set opposite value for even indexed tiles
   groupedArr.forEach((arr) => { 
@@ -52,42 +55,52 @@ const groupedArr = sliceIntoChunks(tilesArr, 2);
     arr[1].innerText == 0 ? arr[0].innerText = 1 : arr[0].innerText = 0
   })
 
-// console.log(groupedArr)
-
 
 //Move character img to index of clicked tile
 const moveCharacter = (e) => {
-  console.log(Array.from(tilesArr).indexOf(e.target));
   const tileIndex = Array.from(tilesArr).indexOf(e.target);
+  console.log(tileIndex)
   //if on zero value tile player loses 
   if(tilesArr[tileIndex].innerText == 0) {
     deadModal.style.visibility = 'visible' 
     console.log('lose')
-  }
-  tilesArr[tileIndex].appendChild(character);
+  }                                     
+  tilesArr[tileIndex].appendChild(character);                      
 
+  console.log(tilesArr[tileIndex - 2])
   //if odd index tile (on right side of bridge)
-  if (tileIndex % 2) {
-    tilesArr[tileIndex - 1].style.pointerEvents = "none";
-    tilesArr[tileIndex + 1].style.pointerEvents = "none";
-    tilesArr[tileIndex + 2].style.pointerEvents = "none";
-  }
-  //if even index tile (on left side of bridge)
-  if (tileIndex % 2 == 0) {
-    tilesArr[tileIndex + 1].style.pointerEvents = "none";
-    tilesArr[tileIndex + 2].style.pointerEvents = "none";
-    tilesArr[tileIndex + 3].style.pointerEvents = "none";
-  }
+  // TODO -- maybe while loop? no se. 
+  // if (tileIndex % 2) {
+  //   tilesArr[tileIndex - 1].style.pointerEvents = "none";
+  //   tilesArr[tileIndex + 1].style.pointerEvents = "none";
+  //   tilesArr[tileIndex + 2].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 4].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 5].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 6].style.pointerEvents = "none";
+  // }
+  // //if even index tile (on left side of bridge)
+  // if (tileIndex % 2 == 0) {
+  //   tilesArr[tileIndex + 1].style.pointerEvents = "none";
+  //   tilesArr[tileIndex + 2].style.pointerEvents = "none";
+  //   tilesArr[tileIndex + 3].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 4].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 5].style.pointerEvents = "none";
+  //   tilesArr[tileIndex - 6].style.pointerEvents = "none";
+  // }
 };
-
+//  function test2(e) { 
+//    console.log(e.target)
+//  }
 //move character
 tilesArr.forEach((tile) => {
   tile.addEventListener("click", moveCharacter);
+  // tile.addEventListener("click", test2)
 });
 
 //allow character to get to finish line
 end.addEventListener("click", () => { 
   end.appendChild(character)
+  winModal.style.visibility = 'visible'
   console.log('you won!') 
 });
 
