@@ -6,6 +6,12 @@
 
 body {
   background-image: url("img/bridge.jpg");
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 #wrapper {
@@ -58,7 +64,13 @@ body {
 .character {
   width: 100px;
   height: 100px;
-  margin-left: 43%;
+  margin-left: 45%;
+}
+
+.small-character { 
+  width: 75px;
+  height: 75px;
+  margin: 10%;
 }
 
 #winWrapper, #deadWrapper { 
@@ -67,17 +79,19 @@ body {
 
 #deadModal {
   display:flex;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 110%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
   background: black;
   color: red;
+  
+  
 }
 
 #icon img{ 
@@ -109,7 +123,7 @@ body {
 
 #winModal {
   display:flex;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
@@ -138,4 +152,3 @@ body {
   font-weight: bold;
   padding: 1.2rem;
 }
-

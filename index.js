@@ -17,12 +17,17 @@ const createBridge = (gridsNum) => {
 
 createBridge(13);
 
-//Add Character
+//Add Character 
 const character = document.createElement("img");
 character.setAttribute("src", "img/green.png");
 character.classList.add("character");
 
 start.appendChild(character);
+
+//Smaller Character on tiles
+const smallCharacter = document.createElement("img");
+smallCharacter.setAttribute("src", "img/green.png");
+smallCharacter.classList.add("small-character");
 
 //play again btn click
 const goAgain = () => {
@@ -33,6 +38,7 @@ const goAgain = () => {
 //Array of "glass" squares
 let tilesArr = [...bridge.childNodes];
 
+//open first row to movement
 tilesArr[10].classList.replace("grid", "grid2");
 tilesArr[11].classList.replace("grid", "grid2");
 
@@ -55,12 +61,11 @@ groupedArr.forEach((arr) => {
   arr[1].innerText == 0 ? (arr[0].innerText = 1) : (arr[0].innerText = 0);
 });
 
-//Move character img to index of clicked tile
+//Move character img, check if tile will cause loss, open next row to movements
 const moveCharacter = (e) => {
   let tileIndex = Array.from(tilesArr).indexOf(e.target);
-  console.log(tileIndex);
 
-  tilesArr[tileIndex].appendChild(character);
+  tilesArr[tileIndex].appendChild(smallCharacter);
 
   //if on zero value tile player loses
   if (tilesArr[tileIndex].innerText == 0) {
@@ -71,45 +76,39 @@ const moveCharacter = (e) => {
   if (tileIndex == 10 || tileIndex == 11) {
     tilesArr[8].classList.replace("grid", "grid2");
     tilesArr[9].classList.replace("grid", "grid2");
-    console.log("first row");
     return;
   }
 
   if (tileIndex == 8 || tileIndex == 9) {
     tilesArr[7].classList.replace("grid", "grid2");
     tilesArr[6].classList.replace("grid", "grid2");
-    console.log("second row");
     return;
   }
 
   if (tileIndex == 6 || tileIndex == 7) {
     tilesArr[5].classList.replace("grid", "grid2");
     tilesArr[4].classList.replace("grid", "grid2");
-    console.log("third row");
     return;
   }
 
   if (tileIndex == 4 || tileIndex == 5) {
     tilesArr[3].classList.replace("grid", "grid2");
     tilesArr[2].classList.replace("grid", "grid2");
-    console.log("fourth row");
     return;
   }
 
   if (tileIndex == 2 || tileIndex == 3) {
     tilesArr[1].classList.replace("grid", "grid2");
     tilesArr[0].classList.replace("grid", "grid2");
-    console.log("fifth row");
     return;
   }
-  
+
   if (tileIndex == 0 || tileIndex == 1) {
     //allow character to get to finish line
     end.addEventListener("click", () => {
       end.appendChild(character);
       winModal.style.visibility = "visible";
     });
-    console.log("sixth row");
     return;
   }
 };
@@ -118,4 +117,3 @@ const moveCharacter = (e) => {
 tilesArr.forEach((tile) => {
   tile.addEventListener("click", moveCharacter);
 });
-
