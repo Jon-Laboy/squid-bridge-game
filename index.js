@@ -27,7 +27,7 @@ start.appendChild(character);
 //Smaller Character on tiles
 const smallCharacter = document.createElement("img");
 smallCharacter.setAttribute("src", "img/green.png");
-smallCharacter.classList.add("small-character");
+smallCharacter.classList.add("tile-character");
 
 //play again btn click
 const goAgain = () => {
@@ -67,6 +67,7 @@ const moveCharacter = (e) => {
 
   tilesArr[tileIndex].appendChild(smallCharacter);
 
+
   //if on zero value tile player loses
   if (tilesArr[tileIndex].innerText == 0) {
     deadModal.style.visibility = "visible";
@@ -76,6 +77,7 @@ const moveCharacter = (e) => {
   if (tileIndex == 10 || tileIndex == 11) {
     tilesArr[8].classList.replace("grid", "grid2");
     tilesArr[9].classList.replace("grid", "grid2");
+    start.removeChild(character)
     return;
   }
 

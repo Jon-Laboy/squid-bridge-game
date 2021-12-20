@@ -47,7 +47,7 @@ html {
   background: linear-gradient(#2396bf, #0d5b77 40%, #004961 3%, #004961);
   opacity: 0.7;
   cursor: pointer;
-  font-size: 1;
+  font-size: 0;
   pointer-events:none;
 }
 
@@ -62,15 +62,15 @@ html {
 }
 
 .character {
-  width: 100px;
-  height: 100px;
-  margin-left: 45%;
+  max-width: 150px;
+  max-height: 100px;
+  margin-left: 43%;
 }
 
-.small-character { 
-  width: 75px;
-  height: 75px;
-  margin: 10%;
+.tile-character { 
+  max-width: 100px;
+  max-height: 100px;
+  margin-left: 25%;
 }
 
 #winWrapper, #deadWrapper { 
@@ -151,4 +151,16 @@ html {
   font-size: 1.1rem;
   font-weight: bold;
   padding: 1.2rem;
+}
+
+@media (max-width: 600px) { 
+  .tile-character { 
+    width: 75px;
+    height: 75px;
+    margin-left: 15%;
+  }
+
+  .character { 
+    margin-left: 25%;
+  }
 }
